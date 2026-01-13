@@ -45,11 +45,10 @@ export const FAQ: React.FC = () => {
     <Section id="faq" className="bg-white">
       <div className="max-w-4xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-h2 mb-6">Frequently asked questions</h2>
-          <p className="text-body-lg text-gray-600">
-            Everything you need to know about Onflow. Can't find what you're
-            looking for? <a href="#" className="text-primary font-semibold hover:underline">Chat with our team</a>.
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-h2 mb-6">Frequently asked questions</h2>
+          <p className="text-lg md:text-body-lg text-gray-600">
+            Everything you need to know about Onflow.
           </p>
         </div>
 

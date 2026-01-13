@@ -12,6 +12,7 @@ const config: Config = {
         // Core Brand Colors
         primary: '#0e70f9',
         secondary: '#008ba6',
+        'brand-blue': '#063268',
         background: '#f8fafc',
         'text-dark': '#003040',
 

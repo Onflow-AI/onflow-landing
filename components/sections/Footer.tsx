@@ -31,7 +31,7 @@ export const Footer: React.FC = () => {
         <div className="py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
             {/* Brand Column */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left">
               <div className="flex items-center space-x-1.5 mb-4">
                 <Image
                   src="/onflow-logo.svg"
@@ -45,9 +45,9 @@ export const Footer: React.FC = () => {
               <p className="text-gray-400 mb-6 max-w-md">
                 Testing evolved. Ship products users love with AI-powered agentic testing.
               </p>
-
-              {/* Social Links */}
-              <div className="flex gap-4">
+ 
+               {/* Social Links */}
+              <div className="flex gap-4 justify-center md:justify-start">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
@@ -62,8 +62,8 @@ export const Footer: React.FC = () => {
             </div>
 
             {/* Quick Links */}
-            <div>
-              <ul className="space-y-3">
+            <div className="flex flex-col items-center md:items-start">
+              <ul className="space-y-3 text-center md:text-left">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <a

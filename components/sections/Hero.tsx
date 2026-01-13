@@ -30,7 +30,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-semibold text-primary mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-sm font-semibold text-brand-blue mb-8"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-hero font-extrabold text-text-dark max-w-5xl mb-6 leading-tight"
+            className="text-3xl md:text-5xl lg:text-hero font-extrabold text-text-dark max-w-4xl mb-6 leading-tight"
           >
             Agents that test and{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -57,10 +57,10 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-body-lg text-gray-600 max-w-3xl mb-10"
+            className="text-lg md:text-body-lg text-gray-600 max-w-2xl mb-10"
           >
             Onflow uses AI agents with computer vision to test your product like
-            real users—finding bugs, UX issues, and friction before launch.
+            real users: finding UX issues and changing them before launch.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -68,19 +68,19 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-8"
+            className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto"
           >
             <Button variant="primary" size="lg" className="group" href="https://tally.so/r/aQ9gxb">
               Join Our Waitlist
               <ArrowRight className="ml-2 w-5 h-5 transition-transform" />
             </Button>
           </motion.div>
-          {/* Hero Visual */}
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="mt-8 w-full max-w-5xl"
+            className="mt-12 w-full max-w-5xl"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-2xl blur-3xl opacity-50" />
@@ -98,12 +98,12 @@ export const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="w-full py-16 mt-8"
+            className="w-full py-12 md:py-16 mt-8"
           >
-            <p className="text-sm text-gray-500 mb-6 font-medium uppercase tracking-widest">
+            <p className="text-sm text-gray-500 mb-8 font-medium uppercase tracking-widest text-center">
               Trusted by product teams
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 transition-opacity">
+            <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 md:gap-20 transition-opacity">
               {trustLogos.map((logo, index) => (
                 <div
                   key={index}

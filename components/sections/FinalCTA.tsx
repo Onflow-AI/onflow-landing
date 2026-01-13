@@ -3,13 +3,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
+import { Container } from '@/components/ui/Container';
 
 export const FinalCTA: React.FC = () => {
   return (
-    <Section className="relative overflow-hidden">
-      {/* Dark Base */}
+    <section className="relative overflow-hidden section-padding">
+      {/* Dark Base - Now full bleed */}
       <div className="absolute inset-0 bg-slate-950" />
 
       {/* Primary Vortex Layer */}
@@ -39,7 +39,7 @@ export const FinalCTA: React.FC = () => {
 
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <Container className="relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -48,12 +48,12 @@ export const FinalCTA: React.FC = () => {
           className="space-y-8"
         >
           {/* Headline */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold !text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold !text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
             Ready to ship products users love?
           </h2>
-
-          {/* Subheadline */}
-          <p className="text-xl md:text-2xl !text-blue-100 max-w-2xl mx-auto">
+ 
+           {/* Subheadline */ }
+          <p className="text-lg md:text-xl md:text-2xl !text-blue-100 max-w-2xl mx-auto">
             Join 100+ people waiting for Onflow to test smarter and ship faster.
           </p>
 
@@ -69,8 +69,7 @@ export const FinalCTA: React.FC = () => {
             </Button>
           </div>
         </motion.div>
-
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 };

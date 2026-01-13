@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -73,7 +73,7 @@ export const Navigation: React.FC = () => {
                 height={48}
                 className="w-12 h-12"
               />
-              <span className="text-2xl font-bold text-primary">Onflow</span>
+              <span className="text-2xl font-bold text-brand-blue">Onflow</span>
             </motion.a>
 
 
@@ -125,42 +125,50 @@ export const Navigation: React.FC = () => {
           </div>
 
           {/* Mobile Menu */}
-          {isMobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-200">
-              <div className="flex flex-col space-y-4">
-                {navLinks.map((link) => (
-                  link.name === 'Pricing' ? (
-                    <motion.button
-                      key={link.name}
-                      animate={controls}
-                      onClick={handlePricingClick}
-                      className="text-left text-gray-400 font-medium transition-all duration-200 py-2 px-4 rounded-lg cursor-not-allowed"
-                    >
-                      <span>{link.name}</span>
-                    </motion.button>
-                  ) : (
-                    <a
-                      key={link.name}
-                      href={link.href}
-                      className="text-gray-600 hover:text-primary hover:bg-blue-50 font-medium transition-all duration-200 py-2 px-4 rounded-lg cursor-pointer"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </a>
-                  )
-                ))}
-                <div className="pt-4 border-t border-gray-200 flex flex-col space-y-3">
-                  {/* Temporary Sign In Button (Mobile) */}
-                  <Button variant="ghost" size="md" onClick={handleSignInClick}>
-                    Sign In
-                  </Button>
-                  <Button variant="primary" size="md" href="https://tally.so/r/aQ9gxb">
-                    Join Waitlist
-                  </Button>
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="md:hidden overflow-hidden border-t border-gray-100 bg-white"
+              >
+                <div className="flex flex-col space-y-4 py-6 px-4">
+                  {navLinks.map((link) => (
+                    link.name === 'Pricing' ? (
+                      <motion.button
+                        key={link.name}
+                        animate={controls}
+                        onClick={handlePricingClick}
+                        className="text-left text-gray-400 font-medium transition-all duration-200 py-3 px-4 rounded-xl cursor-not-allowed bg-gray-50 border border-gray-100 flex items-center justify-between"
+                      >
+                        <span>{link.name}</span>
+                        <span className="text-[10px] uppercase tracking-wider bg-gray-200 text-gray-500 px-2 py-0.5 rounded-full">Soon</span>
+                      </motion.button>
+                    ) : (
+                      <a
+                        key={link.name}
+                        href={link.href}
+                        className="text-gray-600 hover:text-primary hover:bg-blue-50 font-semibold transition-all duration-200 py-3 px-4 rounded-xl cursor-pointer flex items-center"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </a>
+                    )
+                  ))}
+                  <div className="pt-6 mt-2 border-t border-gray-100 flex flex-col space-y-4">
+                    <Button variant="ghost" size="lg" className="w-full justify-center" onClick={handleSignInClick}>
+                      Sign In
+                    </Button>
+                    <Button variant="primary" size="lg" className="w-full justify-center shadow-lg shadow-blue-500/20" href="https://tally.so/r/aQ9gxb">
+                      Join Waitlist
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </nav>
 

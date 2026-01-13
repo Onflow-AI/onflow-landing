@@ -8,12 +8,15 @@ import { Activity, ShieldCheck, AlertCircle, Layout, Search, Settings, User, Mou
 export const MockAppUI: React.FC = () => {
   const [showUserCursor, setShowUserCursor] = useState(false);
   const [isOrderCompleted, setIsOrderCompleted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [buttonPosition, setButtonPosition] = useState({ x: 350, y: 160 });
   const [logs, setLogs] = useState([
     "Initial Page load successful",
     "Navigated to /checkout",
     "Identifying primary CTA...",
   ]);
   const browserRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   // High-performance mouse tracking
   const mouseX = useMotionValue(0);
@@ -37,13 +40,43 @@ export const MockAppUI: React.FC = () => {
   };
 
   useEffect(() => {
+    const calculateButtonPosition = () => {
+      const isMobileView = window.innerWidth < 768;
+      setIsMobile(isMobileView);
+
+      if (buttonRef.current && browserRef.current) {
+        const buttonRect = buttonRef.current.getBoundingClientRect();
+        const browserRect = browserRef.current.getBoundingClientRect();
+
+        // Calculate center of button relative to browser container
+        const centerX = buttonRect.left - browserRect.left + buttonRect.width / 2;
+        const centerY = buttonRect.top - browserRect.top + buttonRect.height / 2;
+
+        setButtonPosition({ x: centerX, y: centerY });
+      }
+    };
+
+    // Initial calculation with multiple attempts to ensure DOM is fully rendered
+    const initialTimer1 = setTimeout(calculateButtonPosition, 100);
+    const initialTimer2 = setTimeout(calculateButtonPosition, 500);
+    const initialTimer3 = setTimeout(calculateButtonPosition, 1000);
+
+    window.addEventListener('resize', calculateButtonPosition);
+
     const timer = setInterval(() => {
       if (!isOrderCompleted) {
-        // This is a simplified way to trigger the agent click in sync with its animation
-        // In a real app we'd use useAnimation controls
+        // Recalculate button position on each animation cycle
+        calculateButtonPosition();
       }
     }, 12000);
-    return () => clearInterval(timer);
+
+    return () => {
+      clearTimeout(initialTimer1);
+      clearTimeout(initialTimer2);
+      clearTimeout(initialTimer3);
+      clearInterval(timer);
+      window.removeEventListener('resize', calculateButtonPosition);
+    };
   }, [isOrderCompleted]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -103,9 +136,9 @@ export const MockAppUI: React.FC = () => {
         className="flex h-full w-full"
       >
         {/* Sidebar */}
-        <motion.div 
+        <motion.div
           variants={itemVariants}
-          className="w-16 md:w-20 bg-slate-800 border-r border-slate-700 flex flex-col items-center py-6 gap-6 shrink-0"
+          className="hidden md:flex w-20 bg-slate-800 border-r border-slate-700 flex-col items-center py-6 gap-6 shrink-0"
         >
           <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
             <Layout className="w-4 h-4 text-primary" />
@@ -122,27 +155,27 @@ export const MockAppUI: React.FC = () => {
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Header */}
-          <motion.header 
+          <motion.header
             variants={itemVariants}
-            className="h-14 bg-slate-800/50 border-b border-slate-700 flex items-center justify-between px-6 shrink-0"
+            className="h-12 md:h-14 bg-slate-800/50 border-b border-slate-700 flex items-center justify-between px-3 md:px-6 shrink-0"
           >
-            <div className="flex items-center gap-3">
-              <div className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/20">
+            <div className="flex items-center gap-2 md:gap-3 min-w-0">
+              <div className="bg-emerald-500/10 text-emerald-400 text-[9px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 rounded border border-emerald-500/20 shrink-0">
                 ACTIVE TEST
               </div>
-              <div className="text-slate-300 text-sm font-medium truncate">
+              <div className="text-slate-300 text-xs md:text-sm font-medium truncate">
                 E-commerce Checkout Flow
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-slate-400 text-xs">3 Agents Running</span>
+            <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
+              <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-slate-400 text-[10px] md:text-xs hidden sm:inline">3 Agents Running</span>
             </div>
           </motion.header>
 
           {/* Browser View */}
-          <div className="flex-1 p-4 flex gap-4 overflow-hidden">
-            <motion.div 
+          <div className="flex-1 p-2 md:p-4 flex gap-4 overflow-hidden">
+            <motion.div
               ref={browserRef}
               variants={itemVariants}
               onMouseEnter={() => setShowUserCursor(true)}
@@ -151,91 +184,116 @@ export const MockAppUI: React.FC = () => {
               className="flex-1 bg-white rounded-lg border border-slate-700 overflow-hidden relative shadow-inner flex flex-col cursor-none"
             >
               {/* Fake Website UI */}
-              <div className="h-10 bg-gray-100 flex items-center px-4 gap-2 border-b border-gray-200">
-                <div className="flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
-                  <div className="w-2 h-2 rounded-full bg-gray-300" />
+              <div className="h-8 md:h-10 bg-gray-100 flex items-center px-2 md:px-4 gap-2 border-b border-gray-200">
+                <div className="flex gap-1 md:gap-1.5">
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gray-300" />
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gray-300" />
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gray-300" />
                 </div>
-                <div className="flex-1 max-w-sm h-5 bg-white rounded border border-gray-200 text-[9px] flex items-center px-2 text-gray-400">
+                <div className="flex-1 max-w-sm h-4 md:h-5 bg-white rounded border border-gray-200 text-[8px] md:text-[9px] flex items-center px-1.5 md:px-2 text-gray-400">
                   store.example.com/checkout
                 </div>
               </div>
-              <div className="flex-1 p-6 space-y-4 relative">
+              <div className="flex-1 p-3 md:p-6 space-y-3 md:space-y-4 relative">
                 {isOrderCompleted ? (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-6"
+                    className="absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-4 md:p-6"
                   >
-                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-4">
-                      <ShieldCheck className="w-8 h-8 text-emerald-500" />
+                    <div className="w-12 h-12 md:w-16 md:h-16 bg-emerald-100 rounded-full flex items-center justify-center mb-3 md:mb-4">
+                      <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-emerald-500" />
                     </div>
-                    <h4 className="text-xl font-bold text-slate-800 mb-2">Order Confirmed!</h4>
-                    <p className="text-sm text-slate-500">Thank you for your purchase.</p>
+                    <h4 className="text-base md:text-xl font-bold text-slate-800 mb-1 md:mb-2">Order Confirmed!</h4>
+                    <p className="text-xs md:text-sm text-slate-500">Thank you for your purchase.</p>
                   </motion.div>
                 ) : null}
-                <div className="h-6 w-1/3 bg-gray-200 rounded" />
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="h-32 bg-gray-100 rounded-lg border border-dashed border-gray-300 flex items-center justify-center">
-                    <div className="text-gray-300 text-[10px]">Product Image</div>
+                <div className="h-4 md:h-6 w-1/3 bg-gray-200 rounded" />
+                <div className="grid grid-cols-2 gap-2 md:gap-4">
+                  <div className="h-24 md:h-32 bg-gray-100 rounded-lg border border-dashed border-gray-300 flex items-center justify-center">
+                    <div className="text-gray-300 text-[8px] md:text-[10px]">Product Image</div>
                   </div>
-                  <div className="space-y-3">
-                    <div className="h-4 w-full bg-gray-200 rounded" />
-                    <div className="h-4 w-5/6 bg-gray-200 rounded" />
-                    <motion.button 
+                  <div className="space-y-2 md:space-y-3">
+                    <div className="h-3 md:h-4 w-full bg-gray-200 rounded" />
+                    <div className="h-3 md:h-4 w-5/6 bg-gray-200 rounded" />
+                    <motion.button
+                      ref={buttonRef}
                       whileTap={{ scale: 0.90 }}
                       onClick={completeOrder}
-                      className="h-10 w-full bg-primary/80 rounded-lg flex items-center justify-center text-white text-[10px] font-bold shadow-md !cursor-none hover:bg-primary transition-colors"
+                      className="h-8 md:h-10 w-full bg-primary/80 rounded-lg flex items-center justify-center text-white text-[9px] md:text-[10px] font-bold shadow-md !cursor-none hover:bg-primary transition-colors"
                     >
                       COMPLETE ORDER
                     </motion.button>
                   </div>
                 </div>
-                <div className="h-4 w-1/2 bg-gray-200 rounded" />
+                <div className="h-3 md:h-4 w-1/2 bg-gray-200 rounded" />
               </div>
 
               {/* Agent Cursor Marker */}
-              <motion.div 
+              <motion.div
+                key={`${buttonPosition.x}-${buttonPosition.y}-${isMobile}`}
                 animate={isOrderCompleted ? {
-                  x: 350,
-                  y: 160,
+                  x: isMobile ? 180 : buttonPosition.x,
+                  y: isMobile ? 110 : buttonPosition.y,
                   scale: [1, 0.8, 1]
-                } : { 
-                  x: [100, 250, 200, 150, 350, 350, 350, 100], 
-                  y: [100, 150, 300, 200, 160, 160, 160, 100],
+                } : {
+                  x: [
+                    isMobile ? 40 : 100,
+                    isMobile ? 100 : 250,
+                    isMobile ? 80 : 200,
+                    isMobile ? 170 : 150,
+                    isMobile ? 180 : buttonPosition.x,
+                    isMobile ? 180 : buttonPosition.x,
+                    isMobile ? 180 : buttonPosition.x,
+                    isMobile ? 40 : 100
+                  ],
+                  y: [
+                    isMobile ? 50 : 100,
+                    isMobile ? 70 : 150,
+                    isMobile ? 120 : 300,
+                    isMobile ? 105 : 200,
+                    isMobile ? 110 : buttonPosition.y,
+                    isMobile ? 110 : buttonPosition.y,
+                    isMobile ? 110 : buttonPosition.y,
+                    isMobile ? 50 : 100
+                  ],
                   scale: [1, 1, 1, 1, 0.8, 1, 1, 1]
                 }}
                 onUpdate={(latest: any) => {
-                  // Trigger completion when the agent "clicks" at the 10s mark roughly
-                  if (!isOrderCompleted && latest.x === 350 && latest.y === 160 && latest.scale < 0.9) {
+                  // Trigger completion when the agent "clicks"
+                  const targetX = isMobile ? 180 : buttonPosition.x;
+                  const targetY = isMobile ? 110 : buttonPosition.y;
+                  if (!isOrderCompleted &&
+                      Math.abs(latest.x - targetX) < 10 &&
+                      Math.abs(latest.y - targetY) < 10 &&
+                      latest.scale < 0.9) {
                     completeOrder();
                   }
                 }}
-                transition={{ 
-                  duration: 12, 
+                transition={{
+                  duration: 12,
                   repeat: isOrderCompleted ? 0 : Infinity,
                   times: [0, 0.2, 0.4, 0.6, 0.8, 0.85, 0.9, 1]
                 }}
-                className="absolute pointer-events-none flex items-start gap-1 z-20"
+                className="absolute pointer-events-none flex items-start gap-0.5 md:gap-1 z-20"
               >
-                <MousePointer2 className="w-5 h-5 text-primary fill-primary drop-shadow-md" />
-                <div className="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+                <MousePointer2 className="w-4 h-4 md:w-5 md:h-5 text-primary fill-primary drop-shadow-md" />
+                <div className="bg-primary text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 rounded-full shadow-lg border border-white/20">
                   AGENT
                 </div>
               </motion.div>
 
               {/* User Interactive Cursor */}
               {showUserCursor && (
-                <motion.div 
-                   className="absolute pointer-events-none flex items-start gap-1 z-30"
-                   style={{ 
+                <motion.div
+                   className="absolute pointer-events-none flex items-start gap-0.5 md:gap-1 z-30"
+                   style={{
                      x: smoothX,
                      y: smoothY
                    }}
                 >
-                  <MousePointer2 className="w-5 h-5 text-indigo-600 fill-indigo-600 drop-shadow-md" />
-                  <div className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
+                  <MousePointer2 className="w-4 h-4 md:w-5 md:h-5 text-indigo-600 fill-indigo-600 drop-shadow-md" />
+                  <div className="bg-indigo-600 text-white text-[8px] md:text-[10px] font-bold px-1.5 md:px-2 py-0.5 rounded-full shadow-lg border border-white/20">
                     USER
                   </div>
                 </motion.div>
@@ -243,7 +301,7 @@ export const MockAppUI: React.FC = () => {
             </motion.div>
 
             {/* Side Panel Labels */}
-            <div className="w-48 hidden lg:flex flex-col gap-3 shrink-0">
+            <div className="hidden lg:flex w-48 flex-col gap-3 shrink-0">
               <motion.div 
                 variants={itemVariants}
                 className="bg-slate-800 p-3 rounded-lg border border-slate-700 shadow-lg"

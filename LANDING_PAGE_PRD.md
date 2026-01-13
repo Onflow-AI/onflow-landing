@@ -383,7 +383,7 @@ ease-productive: cubic-bezier(0.2, 0, 0.38, 0.9)
 
 [Subheadline - Large body text]
 "Onflow uses AI agents with computer vision to test your product
-like real users—finding bugs, UX issues, and friction before launch."
+like real users: finding UX issues and changing them before launch."
 
 [CTA Row]
 [Primary Button: "Start Testing Free"] [Secondary Button: "Watch Demo"]

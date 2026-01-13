@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Onflow - Test your Flows',
   description:
-    'Onflow uses AI agents with computer vision to test your product like real users—finding bugs, UX issues, and friction before launch.',
+    'Onflow uses AI agents with computer vision to test your product like real users, finding UX issues and changing them before launch.',
   keywords: [
     'QA automation',
     'AI testing',

@@ -65,8 +65,8 @@ export const HowItWorks: React.FC = () => {
 
   return (
     <Section id="how-it-works" className="bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
-      {/* Scroll-following Line */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      {/* Scroll-following Line (Desktop only) */}
+      <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
         <svg
           className="w-full h-full"
           viewBox="0 0 1200 2400"
@@ -93,20 +93,20 @@ export const HowItWorks: React.FC = () => {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10" ref={containerRef}>
+      <div className="relative z-10" ref={containerRef}>
 
         {/* Section Header */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-16 md:mb-28">
           <p className="eyebrow">THE PROCESS</p>
-          <h2 className="text-h2 mb-6">From feedback to fix in minutes</h2>
-          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-medium">
+          <h2 className="text-3xl md:text-4xl lg:text-h2 mb-6">From feedback to fix in minutes</h2>
+          <p className="text-body-base md:text-body-lg text-gray-600 max-w-3xl mx-auto font-medium">
             Our autonomous agents handle the heavy lifting of user testing, 
             providing you with the insights you need to build better products.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="space-y-32">
+        <div className="space-y-24 md:space-y-32">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -114,9 +114,7 @@ export const HowItWorks: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
-              className={`grid md:grid-cols-2 gap-16 items-center ${
-                index % 2 === 1 ? 'md:flex-row-reverse' : ''
-              }`}
+              className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full max-w-full"
             >
               {/* Content */}
               <div
@@ -126,10 +124,10 @@ export const HowItWorks: React.FC = () => {
               >
                 {/* Title & Description */}
                 <div className="space-y-4">
-                  <h3 className="text-h3 leading-tight transition-colors group-hover:text-primary">
+                  <h3 className="text-2xl md:text-3xl lg:text-h3 leading-tight transition-colors group-hover:text-primary">
                     {step.title}
                   </h3>
-                  <p className="text-xl text-gray-600 leading-relaxed font-normal">
+                  <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal">
                     {step.description}
                   </p>
                 </div>
@@ -151,12 +149,12 @@ export const HowItWorks: React.FC = () => {
 
               {/* Visual Animation Container */}
               <div
-                className={`relative ${index % 2 === 1 ? 'md:order-1' : ''}`}
+                className={`relative w-full ${index % 2 === 1 ? 'md:order-1' : ''}`}
               >
                 <div className="relative group">
                   {/* Animation Component wrapper */}
-                  <div className="relative bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 p-1 overflow-visible aspect-[4/3]">
-                    <div className="w-full h-full rounded-2xl overflow-visible">
+                  <div className="relative bg-white/20 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/40 p-1 overflow-hidden aspect-[4/3]">
+                    <div className="w-full h-full rounded-2xl overflow-hidden">
                       {step.visual}
                     </div>
                   </div>

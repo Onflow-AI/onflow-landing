@@ -12,10 +12,10 @@ export const SolutionOverview: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <p className="eyebrow">MEET ONFLOW</p>
-          <h2 className="text-h2 mb-6">
+          <h2 className="text-3xl md:text-4xl lg:text-h2 mb-6">
             Agentic testing that thinks like your users
           </h2>
-          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg md:text-body-lg text-gray-600 max-w-3xl mx-auto">
             Our proprietary Browser Using Agents (BUA) leverage Computer Vision to
             interact with your product exactly as real users do.
           </p>
