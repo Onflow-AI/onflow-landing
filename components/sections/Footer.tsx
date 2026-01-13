@@ -63,13 +63,12 @@ export const Footer: React.FC = () => {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-white font-semibold mb-4">Quick Links</h3>
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-400 hover:text-white transition-all inline-block cursor-pointer"
+                      className="text-gray-200 hover:text-white transition-all inline-block cursor-pointer"
                     >
                       {link.name}
                     </a>

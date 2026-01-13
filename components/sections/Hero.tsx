@@ -8,10 +8,14 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { MockAppUI } from '@/components/ui/MockAppUI';
 
-const trustLogos = [
+type TrustLogo = 
+  | { name: string; placeholder: true }
+  | { name: string; src: string; width: number; height: number; href?: string };
+
+const trustLogos: TrustLogo[] = [
   { name: 'Linear', placeholder: true },
   { name: 'Company 1', placeholder: true },
-  { name: 'PixelPro', src: '/images/company1.png', width: 779, height: 239 },
+  { name: 'PixelPro', src: '/images/company1.png', width: 779, height: 239, href: 'https://www.pixelprostudios.sg' },
   { name: 'Company 2', placeholder: true },
   { name: 'Company 3', placeholder: true },
 ];
@@ -110,13 +114,30 @@ export const Hero: React.FC = () => {
                       <Plus className="w-5 h-5" />
                     </div>
                   ) : (
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      width={logo.width}
-                      height={logo.height}
-                      className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
-                    />
+                    'href' in logo ? (
+                      <a 
+                        href={logo.href} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:scale-105 transition-transform inline-block"
+                      >
+                        <Image
+                          src={logo.src}
+                          alt={logo.name}
+                          width={logo.width}
+                          height={logo.height}
+                          className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
+                        />
+                      </a>
+                    ) : (
+                      <Image
+                        src={logo.src}
+                        alt={logo.name}
+                        width={logo.width}
+                        height={logo.height}
+                        className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
+                      />
+                    )
                   )}
                 </div>
               ))}
