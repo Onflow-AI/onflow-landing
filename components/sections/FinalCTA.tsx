@@ -12,10 +12,8 @@ export const FinalCTA: React.FC = () => {
       {/* Dark Base - Now full bleed */}
       <div className="absolute inset-0 bg-slate-950" />
 
-      {/* Primary Vortex Layer */}
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+      {/* Primary Gradient Layer */}
+      <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250%] aspect-square opacity-60 pointer-events-none"
         style={{
           background: "conic-gradient(from 0deg at 50% 50%, #0e70f9, #22d3ee, transparent 30%, #0e70f9, #a855f7, transparent 70%, #0e70f9)",
@@ -23,10 +21,8 @@ export const FinalCTA: React.FC = () => {
         }}
       />
 
-      {/* Secondary Counter-Vortex Layer */}
-      <motion.div 
-        animate={{ rotate: -360 }}
-        transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+      {/* Secondary Gradient Layer */}
+      <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] aspect-square opacity-40 pointer-events-none"
         style={{
           background: "conic-gradient(from 0deg at 50% 50%, transparent, #0e70f9, transparent 25%, #22d3ee, transparent 50%, #a855f7, transparent 75%)",
@@ -40,18 +36,12 @@ export const FinalCTA: React.FC = () => {
 
       {/* Content */}
       <Container className="relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="space-y-8"
-        >
+        <div className="space-y-8">
           {/* Headline */}
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold !text-white leading-tight drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
             Ready to ship products users love?
           </h2>
- 
+
            {/* Subheadline */ }
           <p className="text-lg md:text-xl md:text-2xl !text-blue-100 max-w-2xl mx-auto">
             Join 100+ people waiting for Onflow to test smarter and ship faster.
@@ -68,7 +58,7 @@ export const FinalCTA: React.FC = () => {
               <ArrowRight className="ml-2 w-5 h-5 transition-transform" />
             </Button>
           </div>
-        </motion.div>
+        </div>
       </Container>
     </section>
   );
