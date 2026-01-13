@@ -184,9 +184,9 @@ export const MockAppUI: React.FC = () => {
                     <div className="h-4 w-full bg-gray-200 rounded" />
                     <div className="h-4 w-5/6 bg-gray-200 rounded" />
                     <motion.button 
-                      whileTap={{ scale: 0.95 }}
+                      whileTap={{ scale: 0.90 }}
                       onClick={completeOrder}
-                      className="h-10 w-full bg-primary/80 rounded-lg flex items-center justify-center text-white text-[10px] font-bold shadow-md cursor-pointer hover:bg-primary transition-colors"
+                      className="h-10 w-full bg-primary/80 rounded-lg flex items-center justify-center text-white text-[10px] font-bold shadow-md !cursor-none hover:bg-primary transition-colors"
                     >
                       COMPLETE ORDER
                     </motion.button>
@@ -219,7 +219,7 @@ export const MockAppUI: React.FC = () => {
                 }}
                 className="absolute pointer-events-none flex items-start gap-1 z-20"
               >
-                <MousePointer2 className="w-5 h-5 text-primary fill-primary shadow-lg" />
+                <MousePointer2 className="w-5 h-5 text-primary fill-primary drop-shadow-md" />
                 <div className="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
                   AGENT
                 </div>
@@ -234,7 +234,7 @@ export const MockAppUI: React.FC = () => {
                      y: smoothY
                    }}
                 >
-                  <MousePointer2 className="w-5 h-5 text-indigo-600 fill-indigo-600 shadow-xl" />
+                  <MousePointer2 className="w-5 h-5 text-indigo-600 fill-indigo-600 drop-shadow-md" />
                   <div className="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-lg border border-white/20">
                     USER
                   </div>

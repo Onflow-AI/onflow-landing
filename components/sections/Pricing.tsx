@@ -74,8 +74,10 @@ export const Pricing: React.FC = () => {
 
           {/* Billing Toggle */}
           <div className="inline-flex items-center gap-4 p-1 bg-gray-100 rounded-lg">
-            <button
+            <motion.button
               onClick={() => setBillingCycle('monthly')}
+              whileTap={{ scale: 0.90 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15 }}
               className={`px-6 py-2 rounded-md font-semibold transition-all ${
                 billingCycle === 'monthly'
                   ? 'bg-white text-text-dark shadow-sm'
@@ -83,9 +85,11 @@ export const Pricing: React.FC = () => {
               }`}
             >
               Monthly
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={() => setBillingCycle('annual')}
+              whileTap={{ scale: 0.90 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15 }}
               className={`px-6 py-2 rounded-md font-semibold transition-all flex items-center gap-2 ${
                 billingCycle === 'annual'
                   ? 'bg-white text-text-dark shadow-sm'
@@ -96,7 +100,7 @@ export const Pricing: React.FC = () => {
               <span className="px-2 py-0.5 bg-success text-white text-xs rounded-full">
                 Save 20%
               </span>
-            </button>
+            </motion.button>
           </div>
         </div>
 

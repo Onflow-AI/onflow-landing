@@ -1,220 +1,172 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { UserCircle, Zap, BarChart3, Rocket } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { Users, Eye, Zap, CheckCircle2 } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
+import { PersonaAnimation } from '@/components/animations/PersonaAnimation';
+import { AgentInteractionAnimation } from '@/components/animations/AgentInteractionAnimation';
+import { InsightFixAnimation } from '@/components/animations/InsightFixAnimation';
 
 const steps = [
   {
     number: '01',
-    icon: UserCircle,
-    title: 'Define Your Personas',
+    icon: Users,
+    title: 'AI Persona Generation',
     description:
-      'Use our Persona Generation Engine to create custom user archetypes, or select from pre-built personas. Define goals, behaviors, and expectations for comprehensive testing coverage.',
-    image: '/images/step-1.png',
+      'Generate a diverse swarm of agents equipped with unique personas, motives, and goals—perfectly emulating your target audience.',
+    visual: <PersonaAnimation />,
+    features: [
+      'Custom user archetypes',
+      'Goal-oriented behavior simulation',
+      'Dynamic motive assignment'
+    ]
   },
   {
     number: '02',
-    icon: Zap,
-    title: 'Deploy Agent Swarm',
+    icon: Eye,
+    title: 'Human-Like Testing',
     description:
-      'Launch your agentic swarm to interact with your product. Our AI agents use Computer Vision to see and navigate your interface exactly as real users would, simulating authentic usage patterns.',
-    image: '/images/step-2.png',
+      'Powered by computer vision, our agents use real browsers to interact with your product, uncovering friction and bugs as they navigate.',
+    visual: <AgentInteractionAnimation />,
+    features: [
+      'Visual-first interaction',
+      'Real-world browser simulation',
+      'Automated friction detection'
+    ]
   },
   {
     number: '03',
-    icon: BarChart3,
-    title: 'Review Insights',
+    icon: Zap,
+    title: 'Actionable Insights & Fixes',
     description:
-      'Get detailed reports on bugs, UX friction points, and improvement opportunities. Our analytics dashboard surfaces critical issues and tracks user journey success rates across all personas.',
-    image: '/images/step-3.png',
-  },
-  {
-    number: '04',
-    icon: Rocket,
-    title: 'Ship Fixes Fast',
-    description:
-      'Approve AI-generated pull requests or use insights to guide your development. Our automated PRs include code fixes, test updates, and detailed explanations—ready for human review and merge.',
-    image: '/images/step-4.png',
+      "Every agent provides tangible feedback that's aggregated into recommendations, with improvements ready to be pushed directly after review.",
+    visual: <InsightFixAnimation />,
+    features: [
+      'Aggregated user feedback',
+      'Actionable recommendations',
+      'Direct-to-product improvements'
+    ]
   },
 ];
 
 export const HowItWorks: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 0.95", "end 0.05"]
+  });
+
+  const pathLength = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   return (
-    <Section id="how-it-works" className="bg-gradient-to-b from-blue-50/30 to-white">
-      <div className="max-w-7xl mx-auto">
+    <Section id="how-it-works" className="bg-gradient-to-b from-blue-50/30 to-white relative overflow-hidden">
+      {/* Scroll-following Line */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 1200 2400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+        >
+          <motion.path
+            d="M 600,-100 C 600,100 1000,100 1000,600 C 1000,1000 200,1000 200,1300 C 200,1700 1000,1700 1000,2000 C 1000,2300 600,2300 600,2500"
+            stroke="url(#lineGradient)"
+            strokeWidth="10"
+            strokeDasharray="12 12"
+            strokeLinecap="round"
+            style={{ pathLength }}
+          />
+          <defs>
+            <linearGradient id="lineGradient" x1="0" y1="0" x2="0" y2="100%" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stopColor="#0e70f9" stopOpacity="0" />
+              <stop offset="10%" stopColor="#0e70f9" stopOpacity="0.7" />
+              <stop offset="90%" stopColor="#1e40af" stopOpacity="0.7" />
+              <stop offset="100%" stopColor="#1e40af" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10" ref={containerRef}>
+
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-28">
           <p className="eyebrow">THE PROCESS</p>
           <h2 className="text-h2 mb-6">From feedback to fix in minutes</h2>
-          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto">
-            Our streamlined workflow gets you from testing to deployment faster
-            than any traditional QA process.
+          <p className="text-body-lg text-gray-600 max-w-3xl mx-auto font-medium">
+            Our autonomous agents handle the heavy lifting of user testing, 
+            providing you with the insights you need to build better products.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="space-y-24">
+        <div className="space-y-32">
           {steps.map((step, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className={`grid md:grid-cols-2 gap-12 items-center ${
+              transition={{ duration: 0.8, delay: 0.1, ease: 'easeOut' }}
+              className={`grid md:grid-cols-2 gap-16 items-center ${
                 index % 2 === 1 ? 'md:flex-row-reverse' : ''
               }`}
             >
               {/* Content */}
               <div
-                className={`space-y-6 ${
+                className={`space-y-8 ${
                   index % 2 === 1 ? 'md:order-2' : ''
                 }`}
               >
-                {/* Step Number */}
-                <div className="flex items-center gap-4">
-                  <div className="text-6xl font-black text-transparent bg-gradient-to-br from-primary to-secondary bg-clip-text">
-                    {step.number}
-                  </div>
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
-                    <step.icon className="w-6 h-6 text-white" />
-                  </div>
+                {/* Title & Description */}
+                <div className="space-y-4">
+                  <h3 className="text-h3 leading-tight transition-colors group-hover:text-primary">
+                    {step.title}
+                  </h3>
+                  <p className="text-xl text-gray-600 leading-relaxed font-normal">
+                    {step.description}
+                  </p>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-h3">{step.title}</h3>
-
-                {/* Description */}
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  {step.description}
-                </p>
-
                 {/* Features List */}
-                <div className="pt-4 space-y-3">
-                  {index === 0 && (
-                    <>
-                      <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <svg
-                            className="w-3 h-3 text-success"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          Pre-built persona templates for common user types
-                        </p>
+                <div className="pt-2 space-y-4">
+                  {step.features.map((feature, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <svg
-                            className="w-3 h-3 text-success"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          Custom persona builder with behavioral parameters
-                        </p>
-                      </div>
-                    </>
-                  )}
-                  {index === 1 && (
-                    <>
-                      <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <svg
-                            className="w-3 h-3 text-success"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          Parallel testing across multiple user personas
-                        </p>
-                      </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-success/20 flex items-center justify-center mt-0.5 flex-shrink-0">
-                          <svg
-                            className="w-3 h-3 text-success"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-gray-600">
-                          Real-time session recording and screenshots
-                        </p>
-                      </div>
-                    </>
-                  )}
+                      <p className="text-base text-gray-700 font-medium">
+                        {feature}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Visual */}
+              {/* Visual Animation Container */}
               <div
                 className={`relative ${index % 2 === 1 ? 'md:order-1' : ''}`}
               >
-                <div className="relative">
-                  {/* Glow Effect */}
+                <div className="relative group">
+                  {/* Outer Glow Effect */}
                   <div
-                    className={`absolute -inset-4 bg-gradient-to-r ${
+                    className={`absolute -inset-6 bg-gradient-to-r ${
                       index % 2 === 0
-                        ? 'from-primary/20 to-secondary/20'
-                        : 'from-secondary/20 to-primary/20'
-                    } rounded-3xl blur-2xl opacity-50`}
+                        ? 'from-primary/10 to-blue-500/10'
+                        : 'from-blue-500/10 to-primary/10'
+                    } rounded-[2rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700`}
                   />
 
-                  {/* Image Placeholder */}
-                  <div className="relative bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 overflow-hidden">
-                    <div className="aspect-[4/3] bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 rounded-lg flex items-center justify-center">
-                      <div className="text-center">
-                        <step.icon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                        <p className="text-gray-400 font-medium">
-                          Step {step.number} Visualization
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Decorative Elements */}
-                    <div className="absolute top-4 right-4 w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                    <div className="absolute bottom-4 left-4 flex gap-1">
-                      <div className="w-2 h-2 bg-primary/30 rounded-full" />
-                      <div className="w-2 h-2 bg-primary/50 rounded-full" />
-                      <div className="w-2 h-2 bg-primary rounded-full" />
+                  {/* Animation Component wrapper */}
+                  <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-1 overflow-visible aspect-[4/3]">
+                    <div className="w-full h-full rounded-2xl overflow-visible">
+                      {step.visual}
                     </div>
                   </div>
                 </div>

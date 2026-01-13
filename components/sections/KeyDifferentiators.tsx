@@ -11,7 +11,7 @@ const features = [
     icon: Eye,
     title: 'Computer Vision Intelligence',
     description:
-      'Unlike standard web crawlers that only read raw code, our agents utilize Computer Vision. They view the product exactly as a human does, processing visual cues, getting confused by bad UI, and navigating based on what they see.',
+      'Our browser-using agents see your product exactly like humans—identifying friction, bugs, and pain points by navigating your actual interface.',
     gradient: 'from-blue-500 to-cyan-500',
     bgGradient: 'from-blue-50 to-cyan-50',
   },
@@ -19,15 +19,15 @@ const features = [
     icon: Users,
     title: 'Agentic Personas',
     description:
-      "These aren't simple scripts—they're meticulously crafted AI agents that emulate real users. Each persona has distinct goals, behaviors, and expectations, interacting with your solution to deliver tangible, actionable feedback.",
+      'We generate a fleet of agents equipped with unique motives and goals, emulating your real users to provide invaluable, tangible feedback.',
     gradient: 'from-purple-500 to-pink-500',
     bgGradient: 'from-purple-50 to-pink-50',
   },
   {
     icon: GitBranch,
-    title: 'Automated Fixes',
+    title: 'Automated Evolution',
     description:
-      "Our agents don't just complain—they act. Onflow automatically generates human-verified GitHub pull requests to convert feedback into features and fixes instantly, closing the loop from discovery to deployment.",
+      'Move beyond analysis. High-impact recommendations are aggregated and improvements are pushed directly to your product after human review.',
     gradient: 'from-green-500 to-emerald-500',
     bgGradient: 'from-green-50 to-emerald-50',
   },
@@ -35,7 +35,7 @@ const features = [
 
 export const KeyDifferentiators: React.FC = () => {
   return (
-    <Section id="features" className="bg-white">
+    <Section id="key-features" className="bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -66,7 +66,7 @@ export const KeyDifferentiators: React.FC = () => {
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div
-                    className={`w-16 h-16 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-16 h-16 rounded-xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg`}
                   >
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
@@ -80,10 +80,10 @@ export const KeyDifferentiators: React.FC = () => {
 
                 {/* Decorative Element */}
                 <div className="mt-6 pt-6 border-t border-gray-200 group-hover:border-primary/20 transition-colors">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-primary group-hover:gap-3 transition-all cursor-pointer">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-primary transition-all cursor-pointer">
                     <span className="group-hover:underline">Learn more</span>
                     <svg
-                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      className="w-4 h-4"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

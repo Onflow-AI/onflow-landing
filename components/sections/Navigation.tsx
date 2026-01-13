@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +19,8 @@ export const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+  const [isJiggling, setIsJiggling] = useState(false);
+  const controls = useAnimation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +33,18 @@ export const Navigation: React.FC = () => {
 
   const handleSignInClick = () => {
     setIsSignInModalOpen(true);
+  };
+
+  const handlePricingClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isJiggling) return;
+    
+    setIsJiggling(true);
+    await controls.start({
+      x: [0, -4, 4, -4, 4, 0],
+      transition: { duration: 0.4 }
+    });
+    setTimeout(() => setIsJiggling(false), 1000);
   };
 
   return (
@@ -49,8 +63,8 @@ export const Navigation: React.FC = () => {
             <motion.a
               href="#"
               className="flex items-center hover:opacity-90 transition-opacity cursor-pointer"
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              whileTap={{ scale: 0.90 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15 }}
             >
               <Image
                 src="/onflow-logo.svg"
@@ -59,20 +73,31 @@ export const Navigation: React.FC = () => {
                 height={48}
                 className="w-12 h-12"
               />
-              <span className="text-2xl font-bold text-text-dark">Onflow</span>
+              <span className="text-2xl font-bold text-primary">Onflow</span>
             </motion.a>
 
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
-                >
-                  {link.name}
-                </a>
+                link.name === 'Pricing' ? (
+                  <motion.button
+                    key={link.name}
+                    animate={controls}
+                    onClick={handlePricingClick}
+                    className="text-gray-400 font-medium transition-colors duration-200 cursor-not-allowed relative"
+                  >
+                    <span>{link.name}</span>
+                  </motion.button>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 cursor-pointer relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-200 hover:after:w-full"
+                  >
+                    {link.name}
+                  </a>
+                )
               ))}
             </div>
 
@@ -88,13 +113,15 @@ export const Navigation: React.FC = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg transition-all cursor-pointer active:scale-95"
+            <motion.button
+              className="md:hidden p-2 text-gray-600 hover:text-primary hover:bg-gray-100 rounded-lg transition-all cursor-pointer"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileTap={{ scale: 0.90 }}
+              transition={{ type: "spring", stiffness: 600, damping: 15 }}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile Menu */}
@@ -102,14 +129,25 @@ export const Navigation: React.FC = () => {
             <div className="md:hidden py-4 border-t border-gray-200">
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-gray-600 hover:text-primary hover:bg-blue-50 font-medium transition-all duration-200 py-2 px-4 rounded-lg cursor-pointer"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </a>
+                  link.name === 'Pricing' ? (
+                    <motion.button
+                      key={link.name}
+                      animate={controls}
+                      onClick={handlePricingClick}
+                      className="text-left text-gray-400 font-medium transition-all duration-200 py-2 px-4 rounded-lg cursor-not-allowed"
+                    >
+                      <span>{link.name}</span>
+                    </motion.button>
+                  ) : (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-gray-600 hover:text-primary hover:bg-blue-50 font-medium transition-all duration-200 py-2 px-4 rounded-lg cursor-pointer"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </a>
+                  )
                 ))}
                 <div className="pt-4 border-t border-gray-200 flex flex-col space-y-3">
                   {/* Temporary Sign In Button (Mobile) */}

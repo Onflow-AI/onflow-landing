@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
+import { Button } from '@/components/ui/Button';
 
 const faqs = [
   {
@@ -69,8 +70,10 @@ export const FAQ: React.FC = () => {
               className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:border-primary hover:shadow-md transition-all cursor-pointer"
             >
               {/* Question Button */}
-              <button
+              <motion.button
                 onClick={() => toggleFAQ(index)}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 600, damping: 20 }}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-blue-50/50 transition-all cursor-pointer group"
               >
                 <span className="text-lg font-semibold text-text-dark pr-8 group-hover:text-primary transition-colors">
@@ -83,7 +86,7 @@ export const FAQ: React.FC = () => {
                     }`}
                   />
                 </div>
-              </button>
+              </motion.button>
 
               {/* Answer */}
               <AnimatePresence>
@@ -121,18 +124,18 @@ export const FAQ: React.FC = () => {
               Our team is here to help you get started with Onflow.
             </p>
             <div className="flex gap-3">
-              <a
+              <Button
+                variant="secondary"
                 href="#"
-                className="px-6 py-2 bg-white border border-gray-200 rounded-lg font-semibold text-text-dark hover:border-primary hover:text-primary hover:shadow-md transition-all cursor-pointer"
               >
                 View Documentation
-              </a>
-              <a
+              </Button>
+              <Button
+                variant="primary"
                 href="#"
-                className="px-6 py-2 bg-primary text-white rounded-lg font-semibold hover:bg-blue-600 hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
               >
                 Contact Support
-              </a>
+              </Button>
             </div>
           </div>
         </motion.div>

@@ -51,7 +51,7 @@ export const Footer: React.FC = () => {
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary hover:scale-110 transition-all cursor-pointer group"
+                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary transition-all cursor-pointer group"
                     aria-label={social.name}
                   >
                     <social.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />

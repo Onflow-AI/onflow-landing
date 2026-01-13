@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -8,19 +9,16 @@ import { Container } from '@/components/ui/Container';
 import { MockAppUI } from '@/components/ui/MockAppUI';
 
 const trustLogos = [
-  'Company 1',
-  'Company 2',
-  'Company 3',
-  'Company 4',
-  'Company 5',
+  { name: 'Company 1', src: '/images/company1.png', width: 779, height: 239 },
+  { name: 'Company 2', placeholder: true },
+  { name: 'Company 3', placeholder: true },
+  { name: 'Company 4', placeholder: true },
+  { name: 'Company 5', placeholder: true },
 ];
 
 export const Hero: React.FC = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-50/50 to-background pt-20">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-
       <Container className="relative z-10">
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow Badge */}
@@ -44,9 +42,9 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-hero font-extrabold text-text-dark max-w-5xl mb-6 leading-tight"
           >
-            Ship products users{' '}
+            Agents that test and{' '}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              actually love
+              make your flows work.
             </span>
           </motion.h1>
 
@@ -101,13 +99,25 @@ export const Hero: React.FC = () => {
             <p className="text-sm text-gray-500 mb-6">
               Trusted by product teams
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-50 hover:opacity-75 transition-opacity">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 transition-opacity">
               {trustLogos.map((logo, index) => (
                 <div
                   key={index}
-                  className="h-8 px-6 flex items-center justify-center bg-gray-200 rounded text-gray-600 font-semibold text-sm"
+                  className="h-10 flex items-center justify-center"
                 >
-                  {logo}
+                  {logo.placeholder ? (
+                    <div className="h-8 px-6 flex items-center justify-center bg-gray-200 rounded text-gray-600 font-semibold text-sm grayscale">
+                      {logo.name}
+                    </div>
+                  ) : (
+                    <Image
+                      src={logo.src!}
+                      alt={logo.name}
+                      width={logo.width!}
+                      height={logo.height!}
+                      className="h-10 w-auto object-contain grayscale"
+                    />
+                  )}
                 </div>
               ))}
             </div>

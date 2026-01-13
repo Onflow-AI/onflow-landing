@@ -2,35 +2,30 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Eye, MessageSquare, GitPullRequest, ArrowRight } from 'lucide-react';
+import { Users, Eye, Zap, ArrowRight, GitPullRequest } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 
 const flowSteps = [
   {
     icon: Users,
-    title: 'User Persona',
-    description: 'Define target users',
+    title: 'AI Personas',
+    description: 'Diverse simulated users',
   },
   {
     icon: Eye,
-    title: 'Agentic Testing',
-    description: 'AI agents test with vision',
+    title: 'Visual Testing',
+    description: 'Human-like navigation',
   },
   {
-    icon: MessageSquare,
-    title: 'Feedback',
-    description: 'Actionable insights',
-  },
-  {
-    icon: GitPullRequest,
-    title: 'Auto PRs',
-    description: 'Automated fixes',
+    icon: Zap,
+    title: 'Actionable Fixes',
+    description: 'Direct product improvements',
   },
 ];
 
 export const SolutionOverview: React.FC = () => {
   return (
-    <Section id="solution" className="bg-gradient-to-b from-white to-blue-50/30">
+    <Section id="features" className="bg-gradient-to-b from-white to-blue-50/30">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -48,7 +43,7 @@ export const SolutionOverview: React.FC = () => {
         {/* Animated Flow Diagram */}
         <div className="relative">
           {/* Flow Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {flowSteps.map((step, index) => (
               <React.Fragment key={index}>
                 <motion.div
@@ -61,7 +56,7 @@ export const SolutionOverview: React.FC = () => {
                   {/* Card */}
                   <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-primary hover:shadow-lg transition-all duration-300 group">
                     {/* Icon */}
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center transition-transform duration-300">
                       <step.icon className="w-8 h-8 text-white" />
                     </div>
 

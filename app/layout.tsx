@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Onflow - Ship Products Users Actually Love',
+  title: 'Onflow - Test your Flows',
   description:
     'Onflow uses AI agents with computer vision to test your product like real users—finding bugs, UX issues, and friction before launch.',
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Onflow' }],
   openGraph: {
-    title: 'Onflow - Ship Products Users Actually Love',
+    title: 'Onflow - Test your Flows',
     description:
       'AI-powered agentic testing with computer vision. Test your product like real users.',
     type: 'website',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Onflow - Ship Products Users Actually Love',
+    title: 'Onflow - Test your Flows',
     description:
       'AI-powered agentic testing with computer vision. Test your product like real users.',
   },

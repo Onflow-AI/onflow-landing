@@ -31,7 +31,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       baseClasses,
       variantClasses[variant],
       sizeClasses[size],
-      'cursor-pointer transition-all duration-200',
+      'cursor-pointer transition-colors duration-200',
       className
     );
 
@@ -40,8 +40,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <motion.a 
           href={href} 
           className={classes}
-          whileTap={{ scale: 0.96 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          whileTap={{ scale: 0.90 }}
+          transition={{ type: "spring", stiffness: 600, damping: 15 }}
         >
           {children}
         </motion.a>
@@ -52,8 +52,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <motion.button 
         ref={ref} 
         className={classes} 
-        whileTap={{ scale: 0.96 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        whileTap={{ scale: 0.90 }}
+        transition={{ type: "spring", stiffness: 600, damping: 15 }}
         {...props as any}
       >
         {children}
