@@ -13,11 +13,9 @@ type TrustLogo =
   | { name: string; src: string; width: number; height: number; href?: string };
 
 const trustLogos: TrustLogo[] = [
-  { name: 'Linear', placeholder: true },
   { name: 'Company 1', placeholder: true },
   { name: 'PixelPro', src: '/images/company1.png', width: 779, height: 239, href: 'https://www.pixelprostudios.sg' },
   { name: 'Company 2', placeholder: true },
-  { name: 'Company 3', placeholder: true },
 ];
 
 export const Hero: React.FC = () => {
