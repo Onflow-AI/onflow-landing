@@ -3,17 +3,17 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { MockAppUI } from '@/components/ui/MockAppUI';
 
 const trustLogos = [
-  { name: 'Company 1', src: '/images/company1.png', width: 779, height: 239 },
+  { name: 'Linear', placeholder: true },
+  { name: 'Company 1', placeholder: true },
+  { name: 'PixelPro', src: '/images/company1.png', width: 779, height: 239 },
   { name: 'Company 2', placeholder: true },
   { name: 'Company 3', placeholder: true },
-  { name: 'Company 4', placeholder: true },
-  { name: 'Company 5', placeholder: true },
 ];
 
 export const Hero: React.FC = () => {
@@ -96,26 +96,26 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="w-full py-16 mt-8"
           >
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-sm text-gray-500 mb-6 font-medium uppercase tracking-widest">
               Trusted by product teams
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 transition-opacity">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 transition-opacity">
               {trustLogos.map((logo, index) => (
                 <div
                   key={index}
                   className="h-10 flex items-center justify-center"
                 >
-                  {logo.placeholder ? (
-                    <div className="h-8 px-6 flex items-center justify-center bg-gray-200 rounded text-gray-600 font-semibold text-sm grayscale">
-                      {logo.name}
+                  {'placeholder' in logo ? (
+                    <div className="h-10 w-24 md:w-32 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center text-slate-300">
+                      <Plus className="w-5 h-5" />
                     </div>
                   ) : (
                     <Image
-                      src={logo.src!}
+                      src={logo.src}
                       alt={logo.name}
-                      width={logo.width!}
-                      height={logo.height!}
-                      className="h-10 w-auto object-contain grayscale"
+                      width={logo.width}
+                      height={logo.height}
+                      className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
                     />
                   )}
                 </div>
@@ -124,6 +124,9 @@ export const Hero: React.FC = () => {
           </motion.div>
         </div>
       </Container>
+      
+      {/* Bottom Gradient Transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
     </section>
   );
 };

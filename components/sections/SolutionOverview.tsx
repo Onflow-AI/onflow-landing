@@ -2,26 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Users, Eye, Zap, ArrowRight, GitPullRequest } from 'lucide-react';
+import { Users, Eye, ArrowRight, GitPullRequest } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
-
-const flowSteps = [
-  {
-    icon: Users,
-    title: 'AI Personas',
-    description: 'Diverse simulated users',
-  },
-  {
-    icon: Eye,
-    title: 'Visual Testing',
-    description: 'Human-like navigation',
-  },
-  {
-    icon: Zap,
-    title: 'Actionable Fixes',
-    description: 'Direct product improvements',
-  },
-];
 
 export const SolutionOverview: React.FC = () => {
   return (
@@ -38,80 +20,6 @@ export const SolutionOverview: React.FC = () => {
             interact with your product exactly as real users do—seeing, clicking,
             and experiencing every element of your interface.
           </p>
-        </div>
-
-        {/* Animated Flow Diagram */}
-        <div className="relative">
-          {/* Flow Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-            {flowSteps.map((step, index) => (
-              <React.Fragment key={index}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  {/* Card */}
-                  <div className="bg-white border-2 border-gray-200 rounded-2xl p-6 text-center hover:border-primary hover:shadow-lg transition-all duration-300 group">
-                    {/* Icon */}
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center transition-transform duration-300">
-                      <step.icon className="w-8 h-8 text-white" />
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-h5 mb-2">{step.title}</h3>
-
-                    {/* Description */}
-                    <p className="text-sm text-gray-600">{step.description}</p>
-
-                    {/* Step Number */}
-                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold text-sm shadow-lg">
-                      {index + 1}
-                    </div>
-                  </div>
-
-                  {/* Arrow (desktop only) */}
-                  {index < flowSteps.length - 1 && (
-                    <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.5,
-                          delay: index * 0.1 + 0.3,
-                        }}
-                      >
-                        <ArrowRight className="w-6 h-6 text-primary" />
-                      </motion.div>
-                    </div>
-                  )}
-
-                  {/* Arrow (mobile only) */}
-                  {index < flowSteps.length - 1 && (
-                    <div className="md:hidden flex justify-center my-4">
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.5,
-                          delay: index * 0.1 + 0.3,
-                        }}
-                      >
-                        <ArrowRight className="w-6 h-6 text-primary rotate-90" />
-                      </motion.div>
-                    </div>
-                  )}
-                </motion.div>
-              </React.Fragment>
-            ))}
-          </div>
-
-          {/* Animated Background Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10" />
         </div>
 
         {/* Feature Highlights */}

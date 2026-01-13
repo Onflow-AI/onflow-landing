@@ -30,7 +30,7 @@ const personas = [
 
 export const PersonaAnimation: React.FC = () => {
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-4 bg-slate-50 rounded-2xl overflow-visible border border-slate-200">
+    <div className="relative w-full h-full flex items-center justify-center p-4 bg-white/10 backdrop-blur-md rounded-2xl overflow-visible border border-white/20">
       <div className="grid grid-cols-1 gap-4 w-full max-w-sm">
         {personas.map((persona, index) => (
           <motion.div
@@ -38,7 +38,7 @@ export const PersonaAnimation: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.2, duration: 0.5 }}
-            className="bg-white p-3 rounded-xl shadow-md border border-slate-100 flex items-center gap-3 relative overflow-visible group"
+            className="bg-white/40 backdrop-blur-md p-3 rounded-xl shadow-md border border-white/30 flex items-center gap-3 relative overflow-visible group"
           >
             <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${persona.color} flex items-center justify-center text-white shrink-0 shadow-lg`}>
               <persona.icon size={20} />

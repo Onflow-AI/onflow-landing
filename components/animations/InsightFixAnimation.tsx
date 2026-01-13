@@ -21,7 +21,7 @@ export const InsightFixAnimation: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-full bg-slate-50 rounded-2xl overflow-visible border border-slate-200 flex flex-col p-4">
+    <div className="relative w-full h-full bg-white/10 backdrop-blur-md rounded-2xl overflow-visible border border-white/20 flex flex-col p-4">
       <div className="flex-1 flex flex-col items-center justify-center gap-6">
         
         <AnimatePresence mode="wait">
@@ -40,7 +40,7 @@ export const InsightFixAnimation: React.FC = () => {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: i * 0.2 }}
-                  className="bg-white p-2 rounded-lg border border-slate-100 shadow-md flex items-center gap-3"
+                  className="bg-white/40 backdrop-blur-sm p-2 rounded-lg border border-white/30 shadow-md flex items-center gap-3"
                 >
                   <MessageSquare size={16} className="text-secondary" />
                   <span className="text-sm font-medium text-slate-700">{f}</span>
@@ -75,7 +75,7 @@ export const InsightFixAnimation: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.1 }}
-              className="w-full max-w-[240px] bg-slate-900 rounded-xl p-4 shadow-xl space-y-3"
+              className="w-full max-w-[240px] bg-slate-900/40 backdrop-blur-md rounded-xl p-4 shadow-xl space-y-3"
             >
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-emerald-400 font-bold uppercase">Proposed Improvement</span>

@@ -22,21 +22,21 @@ export const AgentInteractionAnimation: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-full h-full bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-700 p-4">
+    <div className="relative w-full h-full bg-slate-50/40 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/20 p-4">
       {/* Browser Bar */}
-      <div className="h-8 bg-slate-800 rounded-t-lg flex items-center px-4 gap-2 mb-4 border-b border-slate-700">
+      <div className="h-8 bg-slate-100/80 rounded-t-lg flex items-center px-4 gap-2 mb-4 border-b border-slate-200">
         <div className="flex gap-1.5">
           <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
           <div className="w-2.5 h-2.5 rounded-full bg-green-500/50" />
         </div>
-        <div className="flex-1 h-5 bg-slate-950/50 rounded flex items-center px-3">
-          <div className="w-full h-1.5 bg-slate-800 rounded-full animate-pulse" />
+        <div className="flex-1 h-5 bg-white/50 rounded flex items-center px-3">
+          <div className="w-full h-1.5 bg-slate-200 rounded-full animate-pulse" />
         </div>
       </div>
 
       {/* Main Content Area */}
-      <div className="relative aspect-[4/3] bg-white rounded-lg p-6 overflow-hidden">
+      <div className="relative aspect-[4/3] bg-white/30 backdrop-blur-md rounded-lg p-6 overflow-hidden">
         {/* Mock UI Elements */}
         <div className="flex justify-between mb-8">
           <div className="w-24 h-6 bg-slate-100 rounded" />
@@ -98,8 +98,8 @@ export const AgentInteractionAnimation: React.FC = () => {
       {/* Bottom Log */}
       <div className="mt-4 flex items-center gap-3">
         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <div className="text-[10px] font-mono text-slate-400 overflow-hidden whitespace-nowrap">
-           <span className="text-emerald-400">[computer-vision]</span> analyzing_dom_hierarchy... FOUND focusable=false
+        <div className="text-[10px] font-mono text-slate-600 overflow-hidden whitespace-nowrap">
+           <span className="text-emerald-600 font-bold">[computer-vision]</span> analyzing_dom_hierarchy... FOUND focusable=false
         </div>
       </div>
     </div>
