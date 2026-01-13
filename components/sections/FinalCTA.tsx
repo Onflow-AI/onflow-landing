@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Section } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 
@@ -54,7 +54,7 @@ export const FinalCTA: React.FC = () => {
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl !text-blue-100 max-w-2xl mx-auto">
-            Join 200+ teams using Onflow to test smarter and ship faster.
+            Join 100+ people waiting for Onflow to test smarter and ship faster.
           </p>
 
           {/* CTA Buttons */}
@@ -67,67 +67,6 @@ export const FinalCTA: React.FC = () => {
               Join Our Waitlist
               <ArrowRight className="ml-2 w-5 h-5 transition-transform" />
             </Button>
-            <Button
-              size="lg"
-              className="bg-transparent border-2 border-white text-white hover:bg-white/10 group"
-            >
-              <Calendar className="mr-2 w-5 h-5" />
-              Schedule Demo
-            </Button>
-          </div>
-
-          {/* Trust Signals */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-6 text-blue-100 text-sm">
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span>No credit card required</span>
-            </div>
-            <div className="hidden sm:block w-1 h-1 bg-blue-300 rounded-full" />
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span>5-minute setup</span>
-            </div>
-            <div className="hidden sm:block w-1 h-1 bg-blue-300 rounded-full" />
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-5 h-5 text-green-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-              <span>Cancel anytime</span>
-            </div>
           </div>
         </motion.div>
 

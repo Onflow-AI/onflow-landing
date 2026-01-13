@@ -15,10 +15,10 @@ export const AgentInteractionAnimation: React.FC = () => {
   }, []);
 
   const cursorPath = [
-    { x: '20%', y: '30%', label: 'Scanning menu...' },
-    { x: '70%', y: '25%', label: 'Checking login button...' },
-    { x: '50%', y: '60%', label: 'Analyzing form fields...' },
-    { x: '80%', y: '80%', label: 'Button unreachable!' },
+    { x: '45%', y: '48%', label: 'Scanning layout...' },
+    { x: '52%', y: '50%', label: 'Human-like navigation' },
+    { x: '48%', y: '52%', label: 'Testing interactions...' },
+    { x: '50%', y: '45%', label: 'Analyzing visual cues' },
   ];
 
   return (
@@ -77,9 +77,12 @@ export const AgentInteractionAnimation: React.FC = () => {
 
         {/* Agent Cursor */}
         <motion.div
-          animate={{ x: cursorPath[step].x, y: cursorPath[step].y }}
+          animate={{ 
+            left: cursorPath[step].x, 
+            top: cursorPath[step].y 
+          }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="absolute z-20"
+          className="absolute z-20 flex items-center justify-center -translate-x-3 -translate-y-3"
         >
           <div className="relative">
             <MousePointer2 className="text-primary fill-primary" size={24} />
@@ -87,7 +90,7 @@ export const AgentInteractionAnimation: React.FC = () => {
               key={step}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 30 }}
-              className="absolute top-0 left-0 bg-primary/90 text-white text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap shadow-md flex items-center gap-1 border border-white/20"
+              className="absolute top-0 left-0 bg-primary/95 text-white text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap shadow-lg flex items-center gap-1.5 border border-white/20 backdrop-blur-sm"
             >
                <Eye size={10} /> {cursorPath[step].label}
             </motion.div>

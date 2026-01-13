@@ -75,14 +75,14 @@ export const InsightFixAnimation: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 1.1 }}
-              className="w-full max-w-[240px] bg-slate-900/40 backdrop-blur-md rounded-xl p-4 shadow-xl space-y-3"
+              className="w-full max-w-[240px] bg-white/40 backdrop-blur-md rounded-xl p-4 shadow-xl border border-white/50 space-y-3"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] text-emerald-400 font-bold uppercase">Proposed Improvement</span>
-                <GitBranch size={14} className="text-slate-500" />
+                <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-tight">Proposed Improvement</span>
+                <GitBranch size={14} className="text-slate-400" />
               </div>
-              <h4 className="text-white text-sm font-bold">Update checkout buttons to #1E40AF</h4>
-              <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+              <h4 className="text-slate-800 text-sm font-bold">Update checkout buttons to #1E40AF</h4>
+              <div className="h-2 bg-slate-100 rounded-full overflow-hidden border border-slate-200/50">
                 <motion.div 
                   initial={{ width: 0 }}
                   animate={{ width: '100%' }}
@@ -90,12 +90,12 @@ export const InsightFixAnimation: React.FC = () => {
                   className="h-full bg-primary"
                 />
               </div>
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-between pt-2 border-t border-slate-200/30">
                  <div className="flex gap-1">
                    <div className="w-2 h-2 rounded-full bg-emerald-500" />
                    <div className="w-2 h-2 rounded-full bg-emerald-500/50" />
                  </div>
-                 <span className="text-[10px] text-slate-500">Awaiting Human Review</span>
+                 <span className="text-[10px] text-slate-400">Awaiting Human Review</span>
               </div>
             </motion.div>
           )}

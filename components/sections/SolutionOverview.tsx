@@ -17,8 +17,7 @@ export const SolutionOverview: React.FC = () => {
           </h2>
           <p className="text-body-lg text-gray-600 max-w-3xl mx-auto">
             Our proprietary Browser Using Agents (BUA) leverage Computer Vision to
-            interact with your product exactly as real users do—seeing, clicking,
-            and experiencing every element of your interface.
+            interact with your product exactly as real users do.
           </p>
         </div>
 

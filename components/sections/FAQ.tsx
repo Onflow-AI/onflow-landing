@@ -30,12 +30,7 @@ const faqs = [
   {
     question: 'Can Onflow integrate with our CI/CD pipeline?',
     answer:
-      'Yes! Onflow provides webhooks, REST API, and native integrations with popular CI/CD tools like GitHub Actions, GitLab CI, CircleCI, and Jenkins. You can automatically trigger tests on every pull request, deployment, or custom event.',
-  },
-  {
-    question: 'What about data security and privacy?',
-    answer:
-      'Security is our top priority. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We\'re SOC 2 Type II certified and GDPR compliant. Your test sessions are isolated, and we never store sensitive user data. Enterprise plans include on-premise deployment options for maximum control.',
+      'Yes! Onflow provides native integrations with GitHub Actions. You can automatically trigger tests on every pull request, deployment, or custom event.',
   },
 ];
 
@@ -108,37 +103,6 @@ export const FAQ: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex flex-col items-center gap-4 p-8 bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 rounded-2xl">
-            <h3 className="text-xl font-bold text-text-dark">
-              Still have questions?
-            </h3>
-            <p className="text-gray-600">
-              Our team is here to help you get started with Onflow.
-            </p>
-            <div className="flex gap-3">
-              <Button
-                variant="secondary"
-                href="#"
-              >
-                View Documentation
-              </Button>
-              <Button
-                variant="primary"
-                href="#"
-              >
-                Contact Support
-              </Button>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </Section>
   );
