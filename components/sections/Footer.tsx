@@ -19,7 +19,7 @@ const legalLinks = [
 const socialLinks = [
   { name: 'Twitter', icon: Twitter, href: '#' },
   { name: 'GitHub', icon: Github, href: 'https://github.com/Onflow-AI' },
-  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/onflow-ai' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/company/runonflow' },
   { name: 'Email', icon: Mail, href: 'mailto:onflowai.general@gmail.com' },
 ];
 
