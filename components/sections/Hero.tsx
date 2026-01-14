@@ -1,21 +1,27 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowRight, Play, Plus } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { Container } from '@/components/ui/Container';
-import { MockAppUI } from '@/components/ui/MockAppUI';
+import React from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowRight, Play, Plus } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Container } from "@/components/ui/Container";
+import { MockAppUI } from "@/components/ui/MockAppUI";
 
-type TrustLogo = 
+type TrustLogo =
   | { name: string; placeholder: true }
   | { name: string; src: string; width: number; height: number; href?: string };
 
 const trustLogos: TrustLogo[] = [
-  { name: 'Company 1', placeholder: true },
-  { name: 'PixelPro', src: '/images/company1.png', width: 779, height: 239, href: 'https://www.pixelprostudios.sg' },
-  { name: 'Company 2', placeholder: true },
+  { name: "Company 1", placeholder: true },
+  {
+    name: "PixelPro",
+    src: "/images/company1.png",
+    width: 779,
+    height: 239,
+    href: "https://www.pixelprostudios.sg",
+  },
+  { name: "Company 2", placeholder: true },
 ];
 
 export const Hero: React.FC = () => {
@@ -44,7 +50,7 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl md:text-5xl lg:text-hero font-extrabold text-text-dark max-w-4xl mb-6 leading-tight"
           >
-            Agents that test and{' '}
+            Agents that test and{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               make your flows work.
             </span>
@@ -57,8 +63,9 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-body-lg text-gray-600 max-w-2xl mb-10"
           >
-            Onflow uses AI agents with computer vision to test your product like
-            real users: finding UX issues and changing them before launch.
+            Onflow lets founders simulate personas with a swarm of agents to
+            test, evaluate and iterate in a continous loop, optimising user
+            flows for their target users.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -68,7 +75,12 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 mb-8 w-full sm:w-auto"
           >
-            <Button variant="primary" size="lg" className="group" href="https://tally.so/r/aQ9gxb">
+            <Button
+              variant="primary"
+              size="lg"
+              className="group"
+              href="https://tally.so/r/aQ9gxb"
+            >
               Join Our Waitlist
               <ArrowRight className="ml-2 w-5 h-5 transition-transform" />
             </Button>
@@ -90,8 +102,7 @@ export const Hero: React.FC = () => {
             </div>
           </motion.div>
 
-
-                    {/* Trust Bar */}
+          {/* Trust Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,27 +118,17 @@ export const Hero: React.FC = () => {
                   key={index}
                   className="h-10 flex items-center justify-center"
                 >
-                  {'placeholder' in logo ? (
+                  {"placeholder" in logo ? (
                     <div className="h-10 w-24 md:w-32 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center text-slate-300">
                       <Plus className="w-5 h-5" />
                     </div>
-                  ) : (
-                    'href' in logo ? (
-                      <a 
-                        href={logo.href} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hover:scale-105 transition-transform inline-block"
-                      >
-                        <Image
-                          src={logo.src}
-                          alt={logo.name}
-                          width={logo.width}
-                          height={logo.height}
-                          className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
-                        />
-                      </a>
-                    ) : (
+                  ) : "href" in logo ? (
+                    <a
+                      href={logo.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:scale-105 transition-transform inline-block"
+                    >
                       <Image
                         src={logo.src}
                         alt={logo.name}
@@ -135,7 +136,15 @@ export const Hero: React.FC = () => {
                         height={logo.height}
                         className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
                       />
-                    )
+                    </a>
+                  ) : (
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={logo.width}
+                      height={logo.height}
+                      className="h-10 w-auto object-contain grayscale opacity-50 hover:opacity-100 transition-opacity"
+                    />
                   )}
                 </div>
               ))}
@@ -143,7 +152,7 @@ export const Hero: React.FC = () => {
           </motion.div>
         </div>
       </Container>
-      
+
       {/* Bottom Gradient Transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
     </section>

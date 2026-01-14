@@ -10,13 +10,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://onflow.ai'),
+  metadataBase: new URL('https://runonflow.com'),
   title: {
-    default: 'Onflow | Autonomous AI Agents for QA & UX Testing',
+    default: 'Onflow | Test and improve product flows',
     template: '%s | Onflow',
   },
   description:
-    'Onflow uses autonomous AI agents with computer vision to test your product like real users. Detect bugs, find UX friction, and generate fixes automatically.',
+    'Onflow lets founders simulate personas with a swarm of agents to test, evaluate and iterate in a continous loop, optimising user flows for their target users.',
   keywords: [
     'QA automation',
     'AI testing',
@@ -42,19 +42,19 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://onflow.ai',
+    canonical: 'https://runonflow.com',
   },
   openGraph: {
-    title: 'Onflow | Autonomous AI Agents for QA & UX Testing',
+    title: 'Onflow | Test and improve product flows',
     description:
       'Autonomous AI agents that see and use your app like humans. Detect bugs, find UX friction, and generate fixes automatically.',
-    url: 'https://onflow.ai',
+    url: 'https://runonflow.com',
     siteName: 'Onflow',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: 'https://onflow.ai/og-image.png', // Placeholder for now
+        url: 'https://runonflow.com/og-image.png', // Placeholder for now
         width: 1200,
         height: 630,
         alt: 'Onflow AI Agentic Testing',
@@ -63,11 +63,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Onflow | Autonomous AI Agents for QA & UX Testing',
+    title: 'Onflow | Test and improve product flows',
     description:
       'Autonomous AI agents that see and use your app like humans. Detect bugs, find UX friction, and generate fixes automatically.',
     creator: '@onflow_ai',
-    images: ['https://onflow.ai/og-image.png'],
+    images: ['https://runonflow.com/og-image.png'],
   },
 };
 
@@ -83,11 +83,11 @@ const jsonLd = {
     priceCurrency: 'USD',
   },
   description:
-    'Onflow uses autonomous AI agents with computer vision to test your product like real users.',
+    'Onflow lets founders simulate personas with a swarm of agents to test, evaluate and iterate in a continous loop, optimising user flows for their target users.',
   author: {
     '@type': 'Organization',
     name: 'Onflow',
-    url: 'https://onflow.ai',
+    url: 'https://runonflow.com',
   },
 };
 

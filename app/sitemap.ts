@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://onflow.ai';
+  const baseUrl = 'https://runonflow.com';
 
   return [
     {
