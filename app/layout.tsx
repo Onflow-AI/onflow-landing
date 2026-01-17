@@ -52,14 +52,6 @@ export const metadata: Metadata = {
     siteName: 'Onflow',
     locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: 'https://runonflow.com/og-image.png', // Placeholder for now
-        width: 1200,
-        height: 630,
-        alt: 'Onflow AI Agentic Testing',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -67,7 +59,6 @@ export const metadata: Metadata = {
     description:
       'Autonomous AI agents that see and use your app like humans. Detect bugs, find UX friction, and generate fixes automatically.',
     creator: '@onflow_ai',
-    images: ['https://runonflow.com/og-image.png'],
   },
 };
 
